@@ -1,0 +1,7 @@
+/build.xml_orig
+/customize.sh
+/.settings/
+/.classpath
+/.project
+*_orig
+/.tern-project
