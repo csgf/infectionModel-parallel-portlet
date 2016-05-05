@@ -3,6 +3,6 @@
 
 <project name="InfectionModelParallelPortlet" basedir="." default="deploy">
 
-
+	<property name="path" value="../build-common-portlet.xml"/>
 	<import file="../build-common-portlet.xml" />
 </project>
