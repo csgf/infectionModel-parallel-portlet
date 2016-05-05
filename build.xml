@@ -2,5 +2,5 @@
 <!DOCTYPE project>
 
 <project name="InfectionModelParallelPortlet" basedir="." default="deploy">
-	<import file="../build-common.xml" />
+	<import file="../../build-common.xml" />
 </project>
