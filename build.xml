@@ -2,5 +2,5 @@
 <!DOCTYPE project>
 
 <project name="InfectionModelParallelPortlet" basedir="." default="deploy">
-	<import file="../build-common-portlet.xml" />
+	<import file="/opt/liferay-plugins-sdk-6.1.1/portlets/build-common.xml" />
 </project>
