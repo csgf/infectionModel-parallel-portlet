@@ -44,10 +44,11 @@ before_install:
  - cp jsaga-job-management-1.5.11.jar ${INSTALL_ROOT}/glassfish-3.1.2/domains/domain1/lib/
 
 # Copy utils-*.jar to lib/ folder
- - cp ${INSTALL_ROOT}/glassfish-3.1.2/domains/domain1/applications/liferay-portal/WEB-INF/lib/util-*.jar ${INSTALL_ROOT}/glassfish-3.1.2/domains/domain1/lib/
+ - wget http://central.maven.org/maven2/com/liferay/portal/util-taglib/6.1.1/util-taglib-6.1.1.jar
+ - wget http://central.maven.org/maven2/com/liferay/portal/util-java/6.1.1/util-java-6.1.1.jar
+ - wget http://central.maven.org/maven2/com/liferay/portal/util-bridges/6.1.1/util-bridges-6.1.1.jar
+ - cp util-*.jar ${INSTALL_ROOT}/glassfish-3.1.2/domains/domain1/lib/
 
-# Copy utils-*.jar to lib/ folder
- - ${INSTALL_ROOT}/glassfish-3.1.2/domains/domain1/applications/liferay-portal/WEB-INF/lib/util-*.jar ${INSTALL_ROOT}/glassfish-3.1.2/domains/domain1/lib/
 
 # Building the infectionModel-parallel-portlet
 install:
