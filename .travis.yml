@@ -1,8 +1,7 @@
 language: java
 
 jdk:
- #- openjdk6
- - openjdk7
+ - oraclejdk7
 
 before_install: 
  - sudo apt-get update -qq
@@ -43,7 +42,9 @@ before_install:
 # Get the jsaga-job-management-1.5.11.jar
  - wget http://grid.ct.infn.it/csgf/binaries/GridEngine/jsaga-job-management-1.5.11.jar
  - cp jsaga-job-management-1.5.11.jar ${INSTALL_ROOT}/glassfish-3.1.2/domains/domain1/lib/
- 
+
+# Copy utils-*.jar to lib/ folder
+ - ${INSTALL_ROOT}/glassfish-3.1.2/domains/domain1/applications/liferay-portal/WEB-INF/lib/util-*.jar ${INSTALL_ROOT}/glassfish-3.1.2/domains/domain1/lib/
 
 # Building the infectionModel-parallel-portlet
 install:
