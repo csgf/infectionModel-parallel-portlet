@@ -32,6 +32,9 @@ before_install:
 
 # Get the build.properties
  - wget http://grid.ct.infn.it/statistics/plugins/build.properties
+ - sed -i '/\#javac.compiler=modern/c\javac.compiler=modern' build.properties
+ - sed -i '/\javac.compiler=org.eclipse.jdt.core.JDTCompilerAdapter/c\#javac.compiler=org.eclipse.jdt.core.JDTCompilerAdapter' build.properties
+ - dos2unix build.properties
  - cp build.properties liferay-plugins-sdk-6.1.1
  - cp -r ${PORTLET} liferay-plugins-sdk-6.1.1/portlets
 
