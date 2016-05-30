@@ -5,6 +5,13 @@ INFECTION MODEL PARALLEL PORTLET
 ============
 About
 ============
+.. images/ABINIT_logo.png
+
+.. image:: images/Repast_logo_100h.png
+   :height: 100px
+   :align: left
+   :target: https://github.com/csgf/infectionModel-portlet
+   :alt: infectionModel-portlet logo
 
 While the first version of the Infection Model portlet was executed sequentially, this version, the Infection Model parallel portlet, would be executed in parallel. This porlet will be used to investigate how an Agent Based modelling simulation experiments can be executed in parallel by making use of high performance computing facilities.
 
