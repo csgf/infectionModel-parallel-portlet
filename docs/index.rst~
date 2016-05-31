@@ -50,10 +50,6 @@ file under $LIFERAY_HOME/glassfish-3.1.2/domains/domain1/logs/server.log.
 there click Add > More in the Brunel University category, click on Add button to
 add this new portlet. Following picture shows the correctly result:
 
-.. image:: images/view.png
-    :align: center
-    :scale: 80%
-    :alt: infectionModel-portlet view
 
 As soon as the portlet has been successfully deployed you have to configure:
 
