@@ -17,14 +17,14 @@ While the first version of the Infection Model portlet was executed sequentially
 
 Similar to the Infection model portlet, it makes use of different input parameters to help users submit expereiments and obtain results. These parameters include: input parameters for the model include the simulation period (specifies how many years the simulation will run), recovered count (specifies the initial healthy population), infected count (specifies the initial infected population) and susceptible count (specifies the initial susceptible population). When an infected agent approaches a susceptible agent, it becomes infected and if there are more than one susceptible agent in the cell, only one, randomly selected agent, is infected. Infected agents recover after a period and become healthy with a level of immunity. Recovered agents immunity decreases every time they are approached by an infected agent and when immunity becomes zero, the recovered agent becomes susceptible and can be infected again, thereby, forming a host of infection networks.
 
-However, rather than running jobs sequentially, with machines having only a single core, this version will run jobs with machines that have many cores running at different cloud sites.
+However, rather than running jobs sequentially, with machines single core machines, this version will run jobs with machines that have many cores running at different cloud sites.
 
 
 ============
 Installation
 ============
 
-This section explains how to deploy and configure the infectionModel-portlet
+This section explains how to deploy and configure the infectionModel-parallel-portlet
 into a Science gateway to submit some preconfigures experitments towards
 Distributed Computing infrastructures.
 
@@ -33,9 +33,9 @@ infectionModel-portlet source through the following git command:
 
 .. code:: bash
 
-        git clone https://github.com/csgf/infectionModel-portlet.git
+        git clone https://github.com/csgf/infectionModel-parallel-portlet.git
 
-2. Now, move into the just created infectionModel-portlet directory and execute
+2. Now, move into the just created infectionModel-parallel-portlet directory and execute
 the deploy command:
 
 .. code:: bash
