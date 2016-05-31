@@ -29,7 +29,7 @@ into a Science gateway to submit some preconfigures experitments towards
 Distributed Computing infrastructures.
 
 1. Move into your Liferay plugin SDK portlets folder and clone the
-infectionModel-portlet source through the following git command:
+infectionModel-parallel-portlet source through the following git command:
 
 .. code:: bash
 
