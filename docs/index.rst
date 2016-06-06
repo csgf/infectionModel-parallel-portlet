@@ -24,75 +24,123 @@ However, rather than running jobs sequentially, with single core machines, this 
 Installation
 ============
 
-This section explains how to deploy and configure the infectionModel-parallel-portlet
-into a Science gateway to submit some preconfigures experitments towards
-Distributed Computing infrastructures.
+This section explains how to deploy and configure the **infectionModel-parallel-portlet**.
 
-1. Move into your Liferay plugin SDK portlets folder and clone the
-infectionModel-parallel-portlet source through the following git command:
+1. Move into your Liferay plugin SDK portlets folder and clone the template-portlet
+source code through the git clone command:
 
 .. code:: bash
 
-        git clone https://github.com/csgf/infectionModel-parallel-portlet.git
+        git clone https://github.com/csgf/infectionModel-parallel.git
 
-2. Now, move into the just created infectionModel-parallel-portlet directory and execute
-the deploy command:
+2. Now, move into the just created portlet directory and execute the deploy
+command:
 
 .. code:: bash
 
         ant deploy
 
-When the previous command has completed, verify that the portlet is
-*"Successfully autodeployed"*, look for a string like this in the Liferay log
-file under $LIFERAY_HOME/glassfish-3.1.2/domains/domain1/logs/server.log.
+When the previous command has completed, verify that the portlet was *"Successfully
+autodeployed"*, look for a string like this in the Liferay log
+file under ``$LIFERAY_HOME/glassfish-3.1.2/domains/domain1/logs/server.log``.
 
 3. Then, open your browser and point at your Science Gateway instance and form
-there click Add > More in the Brunel University category, click on Add button to
+there click Add > More in the ``BRUNEL`` category, click on Add button to
 add this new portlet. Following picture shows the correctly result:
 
+.. image:: images/view.png
+    :align: center
+    :width: 90%
+    :alt: infectionModel-parallel view
 
-As soon as the portlet has been successfully deployed you have to configure:
+As soon as the portlet has been successfully deployed you have to configure it using
+the portlet configuration menu. Portlet configuration is splitted in two parts:
+*Generic application preferences*, *Infrastructures preferences*.
 
-1. the list of e-Infrastructures where the application can be executed;
-2. some additional application settings.
+Generic application preferences
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To configure the e-Infrastructure, go to the portlet preferences and provide the
-the right values for the following parameters:
+The generic part contains:
 
-- **Enable infrastructure**: A yes/no flag which enables or disable the generic e-Infrastructure;
-- **Infrastructure name**: A label representing the e-Infrastructure;
-- **Infrastructure acronym**: The acronym to reference the e-Infrastructure;
-- **BDII**: The Top BDII for this e-Infrastructure;
-- **WMS Hosts**: A separated `;` list of WMS endpoint for this e-Infrastructure;
-- **Proxy Robot host server**: The eTokenServer for this e-Infrastructure;
-- **Proxy Robot host port**: The eTokenServer port for this e-Infrastructure;
-- **Proxy Robot secure connection**: A true/false flag if the eTokenServer require a secure connection;
-- **Proxy Robot Identifier**: The MD5SUM of the robot certificate to be used for this e-Infrastructure;
-- **Proxy Robot Virtual Organization**: The VO for this e-Infrastructure;
-- **Proxy Robot VO Role**: The VO role for this e-Infrastructure;
-- **Proxy Robot Renewal Flag**: A true/false Flag to require proxy renewal before it expires;
-- **Local Proxy**: The path to the proxy if you are using a local proxy;
-- **Software Tags**: The list of software tags requested by the application.
+* **Application Identifier** the identifier assigned to tha application in the GridInteractions database table.
+* **Application label** *(Required)* a short meaningful label for the application.
+* **Production environment** a boolean flag that specify if the portlet will be used in a production or development environment.
 
-The following figure shown how the portlet has been configured to run simulation
-on a cloud based system.
+  * if *true* the development environment preferences will be shown
+      * **UserTrackingDB hostname** hostname of the Grid and Cloud Engine Usertracking database. Usually *localhost*
+      * **UserTrackingDB username** username of the Grid and Cloud Engine Usertracking database user. Usually *user_tracking*
+      * **UserTrackingDB password** password specified for the Usertracking database user. Usually *usertracking*
+      * **UserTrackingDB database** Grid and Cloud Engine Usertracking database name. Usually *userstracking*
+
+* **Application requirements** the necessary statements to specify a job execution requirement, such as a particular software, a particular number of CPUs/RAM, etc. defined using JDL format.
 
 .. image:: images/portlet_pref.png
    :align: center
-   :scale: 70%
-   :alt: infectionModel-portlet preference
+   :width: 90%
+   :alt: infectionModel-parallel preference
 
-Another important step to have infectionModel-portlet ready to be used is: to
-create a new entry in GridOperations table of the UsersTracking database, as
-shown below.
+.. note:: You can get the *Application Idetifier* inserting a new entry into the **GridOperations** table:
 
-.. code:: sql
+    .. code:: sql
 
-    INSERT INTO GridOperation VALUES ('<portal name>' ,'Infection Model portlet');
+        INSERT INTO GridOperation VALUES ('<portal name>' ,'Template Portlet');
+          -- portal name: is a label representing the portal name, you can get the
+          -- right value from your Science Gateway istance.
 
-    -- portal name: is a label representing the portal name, you can get the
-    -- right value from your Science Gateway istance.
 
+Infrastructure preferences
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The infrastructure preferences section shows the e-Infrastructures configured.
+Using the actions menu on the right side of the table, you can:
+
+* Activate / Deactivate
+* Edit
+* Delete
+
+an available infrastructure.
+The *Add New* button is meant to add a new infrastructure available to the application.
+When you click this button a new panel, will be shown with several fields where
+you can specify the Infrastructure details.
+
+The fields belonging to this panel are:
+
+* **Enabled** A boolean which enable or disable the current infrastructure.
+* **Infrastructure Name** *(Required)* The infrastructure name for these settings.
+* **Middleware** *(Required)* The middleware used by the current infrastructure. Here you can specify 3 different values.
+
+  * **an acronym** for gLite based middleware.
+  * **ssh** for HPC Cluster.
+  * **rocci** for cloud based middleware.
+
+Following fields will be traslated in the relevant infrastructure parameters based on the value specified in this field.
+
+* **BDII host**: The Infrastructure information system endpoint (URL).
+
+  * If Middleware is **ssh** here you can specify a ";" separated string with ssh authentications parameters (username;password or username for key based authentication).
+  * If Middleware is **rocci** here you can specify the name of the compute resource that will be created.
+
+* **WMS host**: is the service endpoint (URL).
+* **Robot Proxy host server**: the robot proxy server hostname.
+* **Robot Proxy host port**: the robot proxy server port.
+* **Proxy Robot secure connection**: a boolean to specify if robot proxy server needed a SSL connection.
+* **Robot Proxy identifier**: the robot proxy identifier.
+* **Proxy Robot Virtual Organization**: the virtual organization configured.
+* **Proxy Robot VO Role**: the role virtual organization configured.
+* **Proxy Robot Renewal Flag**: a boolean to specify if robot proxy can be renewed before its expiration.
+* **RFC Proxy Robot**: a boolean to specify if robot proxy must be RFC.
+
+  * If Middleware is **rocci** this field must be checked.
+
+* **Local Proxy**: the path of a local proxy if you want use this type of authentication.
+* **Software Tags**: infrastructure specific information.
+
+  * If Middleware is **rocci** here you can specify a ";" separated string with ``<image_id>;<flavor>;<link_resource>``
+
+.. image:: images/add-infrastructure.png
+   :align: center
+   :width: 90%
+   :alt: template-portlet preference
 
 ============
 Usage
