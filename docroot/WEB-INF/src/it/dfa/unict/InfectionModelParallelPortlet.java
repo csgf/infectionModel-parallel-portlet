@@ -289,8 +289,10 @@ private final Log _log = LogFactoryUtil.getLog(InfectionModelParallelPortlet.cla
 		_log.info(Constants.NEW_LINE + "Job Collection Sent"
 				+ Constants.NEW_LINE + "-------" + Constants.NEW_LINE
 				+ "Portal address: '" + portalIPAddress + "'"
-				+ Constants.NEW_LINE
-				+ "Collection: '" + collection.getSubJobDescriptions().get(0).getArguments()); // _log.info
+				+ Constants.NEW_LINE);
+		for (int i = 0; i < collection.getSubJobDescriptions().size(); i++) {
+			_log.info("Collection: '" + collection.getSubJobDescriptions().get(i).getArguments() + "'" + Constants.NEW_LINE); // _log.info
+		}
 	}
 
 	/**

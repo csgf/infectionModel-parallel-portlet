@@ -63,6 +63,8 @@
 							id="task_number" label="Insert number of parallel jobs:">
 							<aui:validator name="required" />
 							<aui:validator name="digits" />
+              				<aui:validator name="min">1</aui:validator>
+              				<aui:validator name="max">10</aui:validator>
 						</aui:input>
 						<aui:button value="OK" type="button" onClick="updatePage()" />
 						<div id="container"></div>
@@ -75,8 +77,8 @@
 							<aui:input type="hidden" name="arguments" label="arguments"
 							id="arguments" />
 						<aui:field-wrapper>
-<%-- 							<aui:button name="demo" value="Demo" type="button" --%>
-<%-- 								onClick="addDemo()" /> --%>
+							<aui:button name="demo" value="Demo" type="button"
+ 								onClick="addDemo()" />
 							<aui:button name="submit" value="submit" type="button"
 								onClick="preSubmit()" />
 							<aui:button name="reset" value="cancel" type="reset" />
